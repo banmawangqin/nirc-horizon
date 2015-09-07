@@ -2,14 +2,68 @@
 {% load i18n %}
 {% load url from future %}
 
-{% block modal-header %}{% trans "Log In" %}{% endblock %}
-{% block modal_class %}login {% if hide %}modal hide{% endif %}{% endblock %}
+{% block modal_class %}login {% if hide %}modal{% endif %}{% endblock %}
 
 {% block form_action %}{% url 'login' %}{% endblock %}
-{% block ng_controller %}hzLoginCtrl{% endblock %}
+{% block ng_controller %}hzLoginController{% endblock %}
 {% block autocomplete %}{{ HORIZON_CONFIG.password_autocomplete }}{% endblock %}
 
 {% block modal-body %}
+<style type="text/css">
+   body {
+     background:#00243d url('https://dn-ustack.qbox.me/static/public/img/bg.jpg') center center no-repeat fixed;
+     -webkit-background-size:cover;
+     -moz-background-size:cover;
+     -o-background-size:cover;
+     background-size:cover;
+     -webkit-tap-highlight-color:transparent
+   }
+   .form-control {
+      background-color: rgba(255,255,255,.08);
+      color: #fff;
+      border: 1px solid #9da4ae;
+      height: 40px;
+      font-size: 14px;
+   }
+   .form-control:focus {
+   }
+   .fa-eye {
+      display: none;
+   }
+   form label {
+      color: #ccc;
+   }
+   .btn {
+      height: 40px;
+      width: 100%;
+      background-color: #00bdd8;
+      font-size: 16px;
+   }
+   .modal-header {
+      border-bottom: 0px;
+   }
+   .modal-footer {
+      border-top: 0px;
+      padding-top: 0px;
+   }
+   #splash .login {
+      border: 0px;
+      box-shadow: 0 0px 0px;
+   }
+   a {
+      color: #00bdd8;
+   }
+   .reset-link {
+      font-size: 12px;
+   }
+   .reg-link {
+      padding-top: 15px;
+      font-size: 12px;
+   }
+   /*.control-label {
+      display: none;
+   }*/
+</style>
   {% comment %}
     These fake fields are required to prevent Chrome v34+ from autofilling form.
   {% endcomment %}
@@ -37,11 +91,12 @@
     {% if next %}<input type="hidden" name="{{ redirect_field_name }}" value="{{ next }}" />{% endif %}
     {% include "horizon/common/_form_fields.html" %}
   </fieldset>
+  <span class="pull-right"><div class="reset-link"><a href="/auth/reset/">忘记密码?</a></div></span>
 {% endblock %}
 
 {% block modal-footer %}
   <button id="loginBtn" type="submit" class="btn btn-primary pull-right">
-    <span ng-show="auth_type==='credentials'">{% trans "Sign In" %}</span>
-    <span ng-hide="auth_type==='credentials'" ng-cloak>{% trans "Connect" %}</span>
+    <span ng-hide="auth_type==='credentials'" ng-cloak>登 录</span>
   </button>
+  <span class="pull-left"><div class="reg-link"><font color="#ccc">没有账号?</font><a href="/auth/register/">注册</a></span>
 {% endblock %}
