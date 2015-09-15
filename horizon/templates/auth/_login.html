@@ -91,12 +91,12 @@
     {% if next %}<input type="hidden" name="{{ redirect_field_name }}" value="{{ next }}" />{% endif %}
     {% include "horizon/common/_form_fields.html" %}
   </fieldset>
-  <span class="pull-right"><div class="reset-link"><a href="/auth/reset/">忘记密码?</a></div></span>
+  <span class="pull-right"><div class="reset-link"><a href="{% url 'reset' %}">忘记密码?</a></div></span>
 {% endblock %}
 
 {% block modal-footer %}
   <button id="loginBtn" type="submit" class="btn btn-primary pull-right">
     <span ng-hide="auth_type==='credentials'" ng-cloak>登 录</span>
   </button>
-  <span class="pull-left"><div class="reg-link"><font color="#ccc">没有账号?</font><a href="/auth/register/">注册</a></span>
+  <span class="pull-left"><div class="reg-link"><font color="#ccc">没有账号?</font><a href="{% url 'register' %}">注册</a></span>
 {% endblock %}
