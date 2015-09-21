@@ -19,6 +19,8 @@ WEBROOT = '/'
 # Do not set it to '/home/', as this will cause circular redirect loop
 # LOGIN_REDIRECT_URL = WEBROOT
 
+#self modified attributes
+SITE_BRANDING = "ECCN"
 
 # Required for Django 1.5.
 # If horizon is running in production (DEBUG is False), set this
